@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b83by5kbvj33f"]
+
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_rd6s7"]
+[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/map.png" id="2_nf812"]
+[ext_resource type="Texture2D" uid="uid://l3gga412p8um" path="res://Textures/Background Color.png" id="2_wqpk7"]
+[ext_resource type="Shader" path="res://Scripts/ModeSeven.gdshader" id="3_midbv"]
+[ext_resource type="Texture2D" uid="uid://bvioi2jfn2hmv" path="res://Textures/Yoshi Back.png" id="5_2illn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1mfj"]
+shader = ExtResource("3_midbv")
+shader_parameter/mapRotation = -3.14
+shader_parameter/mapPosition = Vector3(0.07, 4, 0.29)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("_map", "_fpsLabel")]
+script = ExtResource("1_rd6s7")
+_map = NodePath("Mode 7")
+_maxMapHeight = 10.0
+_rotationSpeed = 2.0
+_horizontalMovementSpeed = 0.1
+_verticalMovementSpeed = 0.5
+_fpsLabel = NodePath("Label")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+scale = Vector2(15, 11.25)
+texture = ExtResource("2_wqpk7")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 0
+
+[node name="Mode 7" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_n1mfj")
+position = Vector2(240, 180)
+scale = Vector2(0.466926, 0.350195)
+texture = ExtResource("2_nf812")
+
+[node name="Yoshi" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 280)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("5_2illn")

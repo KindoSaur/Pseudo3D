@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://curfuprarthuv"]
+
+[ext_resource type="Script" path="res://Scripts/Movement.gd" id="1_58jwa"]
+[ext_resource type="Shader" path="res://Scripts/BasicMapRotation.gdshader" id="1_gdkwr"]
+[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/map.png" id="2_dcl4e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pcqu"]
+shader = ExtResource("1_gdkwr")
+shader_parameter/mapRotation = 0.0
+shader_parameter/mapPosition = Vector3(0.22, 0, 0.09)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_map")]
+script = ExtResource("1_58jwa")
+_map = NodePath("Sprite2D")
+_maxMapHeight = 10.0
+_rotationSpeed = 2.0
+_horizontalMovementSpeed = 2.0
+_verticalMovementSpeed = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_3pcqu")
+position = Vector2(240, 180)
+scale = Vector2(0.466926, 0.350195)
+texture = ExtResource("2_dcl4e")
