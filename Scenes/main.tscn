@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://b83by5kbvj33f"]
 
-[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/map.png" id="2_nf812"]
+[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/Tracks/Donut Plains 1.png" id="2_nf812"]
 [ext_resource type="Texture2D" uid="uid://l3gga412p8um" path="res://Textures/Background Color.png" id="2_wqpk7"]
 [ext_resource type="Shader" path="res://Scripts/Shaders/ModeSeven.gdshader" id="3_midbv"]
 [ext_resource type="Script" path="res://Scripts/Pseudo3D.gd" id="4_pgm13"]
-[ext_resource type="Texture2D" uid="uid://bvioi2jfn2hmv" path="res://Textures/Yoshi Back.png" id="5_2illn"]
+[ext_resource type="Texture2D" uid="uid://bvioi2jfn2hmv" path="res://Textures/Racers/Yoshi Back.png" id="5_2illn"]
 [ext_resource type="Texture2D" uid="uid://qk35c0ilrapm" path="res://Textures/Hazards/Green_Pipes.png" id="6_tpb4f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1mfj"]
