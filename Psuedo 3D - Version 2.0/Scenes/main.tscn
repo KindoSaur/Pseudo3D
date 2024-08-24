@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2glnv32t8md1"]
+
+[ext_resource type="Texture2D" uid="uid://l3gga412p8um" path="res://Textures/Tracks/Background Color.png" id="1_5044a"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/ModeSeven.gdshader" id="2_02t8y"]
+[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/Tracks/Donut Plains 1.png" id="3_q5wi2"]
+[ext_resource type="Script" path="res://Scripts/Pseudo3D.gd" id="4_s71t4"]
+[ext_resource type="Texture2D" uid="uid://bvioi2jfn2hmv" path="res://Textures/Racers/Yoshi Back.png" id="5_lfi8c"]
+[ext_resource type="Texture2D" uid="uid://qk35c0ilrapm" path="res://Textures/Hazards/Green_Pipes.png" id="6_258cj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhngl"]
+shader = ExtResource("2_02t8y")
+shader_parameter/mapMatrix = null
+shader_parameter/opponentMarkerPosition = null
+shader_parameter/opponentMarkerRadius = null
+shader_parameter/opponentMarkerColor = null
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+scale = Vector2(15, 11.25)
+texture = ExtResource("1_5044a")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 2
+offset_right = 50.0
+offset_bottom = 23.0
+scale = Vector2(0.75, 0.75)
+text = "hhhh"
+
+[node name="Mode 7" type="Sprite2D" parent="." node_paths=PackedStringArray("_playerSprite", "_debugLabel")]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_lhngl")
+position = Vector2(240, 180)
+scale = Vector2(0.467836, 0.35)
+texture = ExtResource("3_q5wi2")
+script = ExtResource("4_s71t4")
+_mapPosition = Vector3(0, 2.65, 0)
+_minMaxMapHeight = Vector2(1, 10)
+_mapRotationSpeed = 1.0
+_mapVerticalMovementSpeed = 0.4
+_mapHorizontalMovementSpeed = 0.1
+_playerSprite = NodePath("../Yoshi")
+_playerMapMarkerColor = Color(0.411765, 1, 1, 1)
+_opponentMapMarkerRadius = 0.003
+_opponentMapMarkerColor = Color(1, 0, 1, 1)
+_opponentMapPosition = Vector3(0.14, 0, 0.525)
+_showDebugInfo = true
+_debugLabel = NodePath("../Label")
+
+[node name="Yoshi" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(242, 286)
+scale = Vector2(2, 2)
+texture = ExtResource("5_lfi8c")
+
+[node name="Green Pipe" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(286, 205)
+scale = Vector2(2, 2)
+texture = ExtResource("6_258cj")
+region_enabled = true
+region_rect = Rect2(0, 64, 24, 32)
