@@ -6,6 +6,10 @@ uniform vec3 opponentMarkerPosition;
 uniform float opponentMarkerRadius;
 uniform vec4 opponentMarkerColor;
 
+uniform vec3 playerMarkerPosition;
+uniform float playerMarkerRadius;
+uniform vec4 playerMarkerColor;
+
 void CreateMarker(vec3 uv, inout vec4 texColor, vec3 pos, float radius, vec4 color)
 {
 	if(distance(uv.xy / uv.z, vec2(pos.x, pos.z)) < radius){
@@ -25,6 +29,7 @@ void fragment()
 	if (texColor.a == 0.0) discard; 
 	
 	CreateMarker(uv, texColor, opponentMarkerPosition, opponentMarkerRadius, opponentMarkerColor);
+	CreateMarker(uv, texColor, playerMarkerPosition, playerMarkerRadius, playerMarkerColor);
 	
 	COLOR = texColor;
 }
