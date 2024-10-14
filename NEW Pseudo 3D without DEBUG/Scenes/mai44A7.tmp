@@ -1,0 +1,127 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2glnv32t8md1"]
+
+[ext_resource type="Texture2D" uid="uid://l3gga412p8um" path="res://Textures/Tracks/Background Color.png" id="1_5044a"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_emb0w"]
+[ext_resource type="Shader" path="res://Shaders/ModeSeven.gdshader" id="2_02t8y"]
+[ext_resource type="Texture2D" uid="uid://do4l3t6fepcy8" path="res://Textures/Tracks/Donut Plains 1.png" id="3_q5wi2"]
+[ext_resource type="Script" path="res://Scripts/World Elements/Pseudo3D.gd" id="4_s71t4"]
+[ext_resource type="Texture2D" uid="uid://bvioi2jfn2hmv" path="res://Textures/Racers/Yoshi Back.png" id="5_lfi8c"]
+[ext_resource type="Texture2D" uid="uid://qk35c0ilrapm" path="res://Textures/Hazards/Green_Pipes.png" id="6_258cj"]
+[ext_resource type="Script" path="res://Scripts/On Screen Elements/SpriteHandler.gd" id="7_wmybs"]
+[ext_resource type="Script" path="res://Scripts/On Screen Elements/Debug.gd" id="7_ymhnw"]
+[ext_resource type="Script" path="res://Scripts/World Elements/Racers/Player.gd" id="8_lejxo"]
+[ext_resource type="Script" path="res://Scripts/World Elements/Hazard.gd" id="11_gfs62"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lhngl"]
+shader = ExtResource("2_02t8y")
+shader_parameter/mapMatrix = null
+shader_parameter/opponentMarkerPosition = null
+shader_parameter/opponentMarkerRadius = null
+shader_parameter/opponentMarkerColor = null
+shader_parameter/playerMarkerPosition = null
+shader_parameter/playerMarkerRadius = null
+shader_parameter/playerMarkerColor = null
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("_map", "_player", "_hazards", "_spriteHandler")]
+script = ExtResource("1_emb0w")
+_map = NodePath("Map")
+_player = NodePath("Sprite Handler/Racers/Player")
+_hazards = [NodePath("Sprite Handler/Hazards/Green Pipe"), NodePath("Sprite Handler/Hazards/Green Pipe2"), NodePath("Sprite Handler/Hazards/Green Pipe3"), NodePath("Sprite Handler/Hazards/Green Pipe4")]
+_spriteHandler = NodePath("Sprite Handler")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 180)
+scale = Vector2(15, 11.25)
+texture = ExtResource("1_5044a")
+
+[node name="Map" type="Sprite2D" parent="." node_paths=PackedStringArray("_debugContainer")]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_lhngl")
+position = Vector2(240, 180)
+scale = Vector2(0.467836, 0.35)
+texture = ExtResource("3_q5wi2")
+script = ExtResource("4_s71t4")
+_mapStartPosition = Vector3(0.14, 4.1, 0.57)
+_minMaxMapHeight = Vector2(2, 6)
+_mapStartRotationAngle = Vector2(4.8, 6.25)
+_mapRotationSpeed = 2.0
+_rotationRadius = 0.035
+_mapVerticalMovementSpeed = 0.4
+_mapHorizontalMovementSpeed = 0.1
+_debugContainer = NodePath("../Debug Container")
+
+[node name="Debug Container" type="Node2D" parent="." node_paths=PackedStringArray("_pseudo3DScript", "_debugLabel")]
+script = ExtResource("7_ymhnw")
+_pseudo3DScript = NodePath("../Map")
+_debugLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="Debug Container"]
+z_index = 10
+texture_filter = 2
+offset_right = 50.0
+offset_bottom = 23.0
+scale = Vector2(0.75, 0.75)
+text = "hhhh"
+
+[node name="Sprite Handler" type="Node2D" parent="."]
+script = ExtResource("7_wmybs")
+
+[node name="Racers" type="Node2D" parent="Sprite Handler"]
+
+[node name="Player" type="Node2D" parent="Sprite Handler/Racers" node_paths=PackedStringArray("_spriteGFX")]
+position = Vector2(-1.52588e-05, 0)
+script = ExtResource("8_lejxo")
+_showPlayerDebug = true
+_playerMapMarkerRadius = 0.01
+_playerMapMarkerColor = Color(0, 1, 1, 1)
+_spriteGFX = NodePath("GFX")
+
+[node name="GFX" type="Sprite2D" parent="Sprite Handler/Racers/Player"]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("5_lfi8c")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Hazards" type="Node2D" parent="Sprite Handler"]
+
+[node name="Green Pipe" type="Sprite2D" parent="Sprite Handler/Hazards" node_paths=PackedStringArray("_spriteGFX")]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("6_258cj")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 32)
+script = ExtResource("11_gfs62")
+_spriteGFX = NodePath(".")
+_mapPosition = Vector3(0.403, 0, 0.137)
+
+[node name="Green Pipe2" type="Sprite2D" parent="Sprite Handler/Hazards" node_paths=PackedStringArray("_spriteGFX")]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("6_258cj")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 32)
+script = ExtResource("11_gfs62")
+_spriteGFX = NodePath(".")
+_mapPosition = Vector3(0.403, 0, 0.067)
+
+[node name="Green Pipe3" type="Sprite2D" parent="Sprite Handler/Hazards" node_paths=PackedStringArray("_spriteGFX")]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("6_258cj")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 32)
+script = ExtResource("11_gfs62")
+_spriteGFX = NodePath(".")
+_mapPosition = Vector3(0.596, 0, 0.067)
+
+[node name="Green Pipe4" type="Sprite2D" parent="Sprite Handler/Hazards" node_paths=PackedStringArray("_spriteGFX")]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("6_258cj")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 32)
+script = ExtResource("11_gfs62")
+_spriteGFX = NodePath(".")
+_mapPosition = Vector3(0.596, 0, 0.137)

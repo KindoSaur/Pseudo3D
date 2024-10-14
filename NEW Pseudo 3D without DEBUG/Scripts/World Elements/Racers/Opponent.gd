@@ -1,0 +1,2 @@
+#Opponent.gd
+extends Racer
