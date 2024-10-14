@@ -23,6 +23,8 @@ void fragment()
 	if (uv.z < 0.0) discard;
 	
 	vec2 projectedUV = uv.xy / uv.z;
+	
+	// Discard render process when outside of the map texture
 	if (projectedUV.x < 0.0 || projectedUV.x > 1.0 || projectedUV.y < 0.0 || projectedUV.y > 1.0) discard;
 	
 	vec4 texColor = texture(TEXTURE, uv.xy / uv.z);
